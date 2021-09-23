@@ -257,6 +257,8 @@ console.log(calc.sum(2, 2));
 
 
 
+
+
 //Import, desde el archivo Module.js, donde tenemos una funcion hello que exportamos.
 
 import { hello } from './module';
@@ -317,3 +319,68 @@ const hello = require('./module')
 
 console.log(hello())
 //Con la sintaxis antigua también podemos exportar más de una variable o función pasándolas como un objeto.
+
+
+
+
+
+
+
+// Generator, con un algoritmo
+
+//Creamos una funcion especial
+function* helloWorld() {
+    if (true) {
+//el yield se utiliza para retornar algo, pero el lo guarda de forma interna     
+        yield 'Hello, ';
+    }
+    if (true) {
+        yield 'World';
+    }
+};
+
+//Ahora una const para llamar a la funcion
+const generatorHello = helloWorld();
+//El generator.next, nos ayuda a reproducir y mostrar el siguiente valor al que se acabo de reproducir, todos tenian que estar validados con true.
+console.log(generator.next().value);
+console.log(generator.next().value);
+//Un generator por cada valor y veamaos que pasa con un tercer valor
+console.log(generator.next().value);
+
+
+
+
+
+
+//La funcion de fibonnaci con una funcion generadora:
+
+
+function* fibonacci(){
+  var fn1 = 1;
+  var fn2 = 1;
+  while (true){  
+    var actual = fn2;
+    fn2 = fn1;
+    fn1 = fn1 + actual;
+    var reset = yield actual;
+    if (reset){
+        fn1 = 1;
+        fn2 = 1;
+    }
+  }
+}
+
+var secuencia = fibonacci();
+console.log(secuencia.next().value);     // 1
+console.log(secuencia.next().value);     // 1
+console.log(secuencia.next().value);     // 2
+console.log(secuencia.next().value);     // 3
+console.log(secuencia.next().value);     // 5
+console.log(secuencia.next().value);     // 8
+console.log(secuencia.next().value);     // 13
+console.log(secuencia.next(true).value); // 1
+console.log(secuencia.next().value);     // 1
+console.log(secuencia.next().value);     // 2
+console.log(secuencia.next().value);     // 3
+
+//https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Iterators_and_Generators
